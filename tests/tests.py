@@ -1,4 +1,3 @@
-from app import app
 import unittest, requests
 
 def test_page_response():
