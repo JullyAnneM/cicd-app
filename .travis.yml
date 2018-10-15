@@ -13,6 +13,7 @@ jobs:
       script: python -m pytest -v tests/tests.py
 
     - stage: "Deploy"
+      script: echo "Deploying..."
       deploy:
         provider: pages
         skip_cleanup: true
