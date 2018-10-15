@@ -7,8 +7,11 @@ install:
 jobs:
   include:
     - stage: "Test"
+      script: python -m pytest -v tests/tests.py
+
+    - stage: "Dev"
       script:
-      - python -m pytest -v tests/tests.py
+        - echo "chegou aqui"
 
 notifications:
   email:
