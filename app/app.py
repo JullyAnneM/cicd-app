@@ -1,9 +1,9 @@
 from flask import Flask, render_template
 import requests
 
-request_json = requests.get("https://haveibeenpwned.com/api/v2/breaches")
-request = request_json.json()
-print (request_json.status_code)
+request = requests.get("https://catfact.ninja/fact")
+
+request = request.json()
 
 app = Flask(__name__)
 
@@ -12,4 +12,4 @@ def main():
     return render_template('index.html', data=request)
 
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True)
