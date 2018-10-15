@@ -24,6 +24,6 @@ jobs:
 notifications:
   email:
     recipients:
-      - jullyanne.motta@gmail.com
+      - jullyanne@gmail.com
     on_success: always
     on_failure: always
