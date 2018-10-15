@@ -4,4 +4,7 @@ script:
 
 notifications:
   email:
-    - jullyanne.motta@gmail.com
+    recipients:
+      - jullyanne.motta@gmail.com
+    on_success: always
+    on_failure: always
