@@ -3,15 +3,22 @@ language: python
 install:
   - pip install -r requirements.txt
 
+stages:
+  - name: "Test & QA"
+  - name: "Deploy"
 
 jobs:
   include:
-    - stage: "Test"
+    - stage: "Test & QA"
       script: python -m pytest -v tests/tests.py
 
-    - stage: "Dev"
-      script:
-        - echo "chegou aqui"
+    - stage: "Deploy"
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+        on:
+          branch: master
 
 notifications:
   email:
