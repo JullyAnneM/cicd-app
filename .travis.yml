@@ -1,0 +1,37 @@
+language: python
+
+addons:
+  sonarcloud:
+    organization: "jullyannem-github" # the key of the org you chose at step #3
+    token:
+      secure: $SONARCLOUD_TOKEN
+
+install:
+  - pip install -r requirements.txt
+
+stages:
+  - name: "Test & QA"
+  - name: "Deploy"
+
+jobs:
+  include:
+    - stage: "Test & QA"
+      script:
+        - python -m pytest -v tests/tests.py
+        - sonar-scanner
+
+    - stage: "Deploy"
+      script: skip
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN # Set as a variable in travis-ci.org dashboard
+        on:
+          branch: master
+
+notifications:
+  email:
+    recipients:
+      - jullyanne.motta@gmail.com
+    on_success: change
+    on_failure: always
