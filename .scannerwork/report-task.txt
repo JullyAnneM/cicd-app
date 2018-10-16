@@ -1,0 +1,7 @@
+organization=jullyannem-github
+projectKey=JullyAnneM_cicd-app
+serverUrl=https://sonarcloud.io
+serverVersion=7.4.0.17996
+dashboardUrl=https://sonarcloud.io/dashboard?id=JullyAnneM_cicd-app
+ceTaskId=AWZ-G54NMDaJGyww-EXO
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWZ-G54NMDaJGyww-EXO
