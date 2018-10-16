@@ -1,6 +1,6 @@
 language: python
 
-addons: 
+addons:
   sonarcloud:
     organization: "jullyannem-github" # the key of the org you chose at step #3
     token:
@@ -16,17 +16,16 @@ stages:
 jobs:
   include:
     - stage: "Test & QA"
-      script: 
+      script:
         - python -m pytest -v tests/tests.py
         - sonar-scanner
 
     - stage: "Deploy"
       script: skip
       deploy:
-        provider: openshift
-        user: $OCP_USER
-        password: $OCP_PASSWORD
-        domain: https://openshift.sharedocp39.lab.rdu2.cee.redhat.com
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN # Set as a variable in travis-ci.org dashboard
         on:
           branch: master
 
@@ -34,5 +33,5 @@ notifications:
   email:
     recipients:
       - jullyanne.motta@gmail.com
-    on_success: change 
+    on_success: change
     on_failure: always
