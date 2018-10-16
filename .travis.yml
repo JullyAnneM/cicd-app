@@ -2,36 +2,40 @@ language: python
 
 addons:
   sonarcloud:
-    organization: "jullyannem-github" # the key of the org you chose at step #3
+    organization: jullyannem-github
     token:
-      secure: $SONARCLOUD_TOKEN
+      secure: "$SONARCLOUD_TOKEN"
 
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 
 stages:
-  - name: "Test & QA"
-  - name: "Deploy"
+- name: Test & QA
+- name: Deploy
 
 jobs:
   include:
-    - stage: "Test & QA"
-      script:
-        - python -m pytest -v tests/tests.py
-        - sonar-scanner
+  - stage: Test & QA
+    script:
+    - python -m pytest -v tests/tests.py
+    - sonar-scanner
 
-    - stage: "Deploy"
-      script: skip
-      deploy:
-        provider: pages
-        skip_cleanup: true
-        github_token: $GITHUB_TOKEN # Set as a variable in travis-ci.org dashboard
-        on:
-          branch: master
+  - stage: Deploy
+    script: skip
+    deploy:
+      provider: openshift
+      user: $OCP_USER
+      password:
+        secure: $OCP_PASSWORD
+      app: cicd-app
+      domain: https://openshift.sharedocp39.lab.rdu2.cee.redhat.com
+      on:
+        repo: JullyAnneM/cicd-app
+        branch: master
 
 notifications:
   email:
     recipients:
-      - jullyanne.motta@gmail.com
+    - jullyanne.motta@gmail.com
     on_success: change
     on_failure: always
