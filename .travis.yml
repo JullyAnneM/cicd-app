@@ -1,10 +1,17 @@
 language: python
 
+rvm:
+  - 1.9.3
+
 addons:
   sonarcloud:
     organization: jullyannem-github
     token:
       secure: "$SONARCLOUD_TOKEN"
+
+before_install:
+  - rvm install 1.9.3
+  - travis_internal_ruby() { echo "1.9.3"; }
 
 install:
 - pip install -r requirements.txt
@@ -29,7 +36,7 @@ jobs:
       password:
         secure: $OCP_PASSWORD
       app: cicd-app
-      domain: https://openshift.sharedocp39.lab.rdu2.cee.redhat.com/console/project/cicd-app/
+      domain: cicd-app
       on:
         repo: JullyAnneM/cicd-app
         branch: master
