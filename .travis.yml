@@ -29,7 +29,7 @@ jobs:
       password:
         secure: $OCP_PASSWORD
       app: cicd-app
-      domain: cicd-app
+      domain: https://openshift.sharedocp39.lab.rdu2.cee.redhat.com/console/project/cicd-app/
       on:
         repo: JullyAnneM/cicd-app
         branch: master
