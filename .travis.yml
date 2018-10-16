@@ -15,6 +15,7 @@ before_install:
 
 install:
 - pip install -r requirements.txt
+- gem install dpl
 
 stages:
 - name: Test & QA
@@ -44,6 +45,6 @@ jobs:
 notifications:
   email:
     recipients:
-    - jullyanne.motta@gmail.com
+    - mail@gmail.com
     on_success: change
     on_failure: always
